@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Windows Embedded Compact 7 开发环境安装详细教程</title>
+    <title>Windows Embedded Compact 7 开发环境安装</title>
     <style>
         body {
             font-family: 宋体, SimSun, serif;
@@ -139,11 +139,61 @@
             display: inline-block;
             vertical-align: middle;
         }
+
+        /* ---------- 底部页面导航 ---------- */
+        .nav-box {
+            border: 1pt solid blue;
+            padding: 12pt 18pt;
+            margin-top: 36pt;
+            margin-bottom: 24pt;
+            font-family: 宋体, SimSun, serif;
+        }
+        .nav-title {
+            font-size: 18pt;
+            color: blue;
+            font-weight: bold;
+            margin-bottom: 8pt;
+        }
+        .nav-box .entry {
+            font-size: 14pt;
+            color: black;
+            margin: 0 0 0 36pt;
+            text-indent: -18pt;
+            padding: 3pt 0;
+            line-height: 1.6;
+        }
+        .nav-box .entry a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .nav-box .entry a:hover {
+            color: #0000CC;
+        }
+        .nav-box .entry .badge {
+            color: #666;
+            font-size: 12pt;
+            margin-left: 8pt;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .page-footer {
+            margin-top: 36pt;
+            padding: 18pt 24pt;
+            background: linear-gradient(to bottom, #FFFFFF 0%, #E6F2FF 100%);
+            text-align: center;
+        }
+        .page-footer .author {
+            margin: 0;
+            color: rgb(0, 120, 215);
+        }
+        .page-footer .author a {
+            color: inherit;
+        }
     </style>
 </head>
 <body>
 
-<h1>Windows Embedded Compact 7 开发环境安装详细教程</h1>
+<h1>Windows Embedded Compact 7 <br>开发环境安装</h1>
 
 <table class="index-table">
     <tr>
@@ -197,7 +247,7 @@
 <p class="step-content-indent"><img src="img/wec700anz/image013.png" alt="安装选项2"></p>
 <p class="step-content-indent">这里可以自定义调整，我这里安装默认的来安装</p>
 <p class="step-content-indent"><img src="img/wec700anz/image014.png" alt="默认安装"></p>
-<p class="step-content-indent">4. 现在就开始安装了，此操作可能会花费十几分钟，请您耐心等待！</p>
+<p class="step-content-indent">4. 现在开始安装，该过程约需十几分钟，具体时长视机器配置而定</p>
 <p class="step-content-indent"><img src="img/wec700anz/image015.png" alt="安装进行中"></p>
 <p class="step-content-indent">5. 若您看到了这个界面，说明 VS 2008 已经成功安装，点击“完成”</p>
 <p class="step-content-indent"><img src="img/wec700anz/image016.png" alt="安装完成"></p>
@@ -227,7 +277,7 @@
 <p class="step-content-indent" style="margin-left:102pt;"><img src="img/wec700anz/image025.png" alt="激活完成"></p>
 <p class="step-content-indent" style="margin-left:103.05pt; text-indent:-18pt;">9. 此时，就可以点击“退出”了</p>
 <p class="step-content-indent" style="margin-left:102pt;"><img src="img/wec700anz/image026.png" alt="退出安装程序"></p>
-<p class="normal-text" style="margin-left:76.5pt;">貌似激活只能维持128天，128天后仍要重复此操作，所以激活工具和安装程序要时刻准备好</p>
+<p class="normal-text" style="margin-left:76.5pt;">激活有效期貌似约为 128 天，到期后需重新激活；建议保留激活工具与安装程序备用。</p>
 
 <h3 class="sec2">3) 升级到SP1 版本（必须！）</h3>
 <p class="normal-text" style="margin-left:61.55pt;">升级到 SP1 版本就会有更多功能，而且，也是 Windows Embedded Compact 7 所必须的环境</p>
@@ -246,14 +296,14 @@
 <p class="step-content-indent" style="margin-left:92.85pt;"><img src="img/wec700anz/image033.png" alt="SP1安装向导"></p>
 <p class="step-content" style="margin-left:92.85pt; text-indent:-22pt;">6. 勾选协议，然后继续下一步</p>
 <p class="step-content-indent" style="margin-left:92.85pt;"><img src="img/wec700anz/image034.png" alt="协议"><img src="img/wec700anz/image035.png" alt="下一步"></p>
-<p class="step-content" style="margin-left:92.85pt; text-indent:-22pt;">7. 此时，就已经开始安装了，此操作仍然需要几十分钟，请您耐心等待！</p>
+<p class="step-content" style="margin-left:92.85pt; text-indent:-22pt;">7. 此时开始安装，该过程约需数十分钟，具体时长视机器配置而定</p>
 <p class="step-content-indent" style="margin-left:92.85pt;"><img src="img/wec700anz/image036.png" alt="SP1安装进度"></p>
 <p class="step-content" style="margin-left:92.85pt; text-indent:-22pt;">8. 出现这个界面，点击“完成”</p>
 <p class="step-content-indent" style="margin-left:92.85pt;"><img src="img/wec700anz/image037.png" alt="SP1安装完成"></p>
 
 <!--------------- 第二部分 --------------->
 <h2 class="sec1">二、 Windows Embedded Compact 7 安装</h2>
-<p class="normal-text" style="margin-left:40.5pt;">安装之前请先检查有没有安装 VS 2008 SP1，安装环境是否为 Windows 7，若没有，请参照 VS2008安装教程 来安装，注意版本VS必须是SP1，否则将不能安装</p>
+<p class="normal-text" style="margin-left:40.5pt;">安装之前请先检查有没有安装 VS 2008 SP1，安装环境是否为 Windows 7，若没有，请参照 VS2008安装教程 来安装；注意 VS 版本需为 SP1，否则无法安装 WEC7</p>
 <p class="normal-text" style="margin-left:40.5pt;">这是您从网盘下载的文件：</p>
 <p class="step-content-indent" style="margin-left:40.5pt;"><img src="img/wec700anz/image038.png" alt="WEC7下载文件"></p>
 <p class="normal-text" style="margin-left:40.5pt;">下面的教程是详细的安装的步骤：</p>
@@ -291,10 +341,10 @@
 <p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">8. 现在到了准备就绪的界面了，检查无误后（注意磁盘的剩余空间，空间不足会报错），点击“Install”开始安装</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image056.png" alt="准备就绪"></p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image057.png" alt="安装开始"></p>
-<p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">9. 现在，安装正式开始，不出意料的话肯定会填出下面的弹窗</p>
+<p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">9. 安装开始后，通常会出现以下提示窗口</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image058.png" alt="安装过程"></p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image059.png" alt="插入DVD2提示"></p>
-<p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">10. 这个窗口是在提示我们需要插入 扩展资源镜像 也就是一开始解压目录的“dvd2.iso”，现在就排上用场了</p>
+<p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">10. 该窗口提示需要插入扩展资源镜像，即最初解压目录中的“dvd2.iso”，此时即可使用</p>
 <p class="step-content-indent" style="margin-left:82.1pt;">请先确保您已经插入“dvd2.iso”或已经解压到目录，然后点击“Browse...”浏览的按钮</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image060.png" alt="浏览按钮"></p>
 <p class="step-content-indent" style="margin-left:82.1pt;">在“浏览文件夹”窗口中进入“dvd2.iso”或者解压的目录，然后逐步展开“OS\processor\x86\”文件夹，然后点击“确定”</p>
@@ -306,14 +356,14 @@
 </p>
 <p class="step-content-indent" style="margin-left:82.1pt;">回到了这个界面，现在点击“OK”</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image065.png" alt="点击OK"></p>
-<p class="step-content-indent" style="margin-left:82.1pt;">就会发现正常继续安装了，此过程可能会花费十几分钟，希望您耐心等待！</p>
+<p class="step-content-indent" style="margin-left:82.1pt;">安装将继续进行，该过程约需十几分钟，具体时长视机器配置而定</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image066.png" alt="继续安装"></p>
 <p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">11. 当您看到这个界面时，就说明Windows Embedded Compact 7 的开发环境已经成功地安装了，直接点击“Finish”完成按钮完成安装</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image067.png" alt="安装完成"></p>
 
 <!--------------- 第三部分 --------------->
 <h2 class="sec1">三、 Virtual PC 2007 SP1 安装、设置中文</h2>
-<p class="normal-text" style="margin-left:40.5pt;">安装之前请先检查安装环境是否为 Windows 7，否则程序将不能正常工作。之所以安装这个虚拟机，是因为它原生支持WindowsEmbeddedCompact7构建的镜像的驱动，体验感更加，也更兼容</p>
+<p class="normal-text" style="margin-left:40.5pt;">安装之前请先检查安装环境是否为 Windows 7，否则程序将不能正常工作。选择 Virtual PC 2007 SP1，是因为它原生提供 WEC7 镜像所需的虚拟硬件驱动，兼容性较好</p>
 <p class="normal-text" style="margin-left:40.5pt;">这是您从网盘下载的文件：</p>
 <p class="step-content-indent" style="margin-left:40.5pt;"><img src="img/wec700anz/image068.png" alt="VPC下载文件"></p>
 <p class="normal-text" style="margin-left:40.5pt;">下面的教程是详细的安装的步骤：</p>
@@ -342,7 +392,7 @@
 <p class="step-content" style="margin-left:82.05pt; text-indent:-22pt;">2. 出现了这个窗口</p>
 <p class="step-content-indent" style="margin-left:82.1pt;">选择您刚才的 Virtual PC 2007 SP1的安装的目录，我这里已经是默认的目录，所以不必修改，所以点击“安装”</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image079.png" alt="选择安装目录"></p>
-<p class="step-content-indent" style="margin-left:82.1pt;">然后窗口可能会突然消失，这个现象说明安装成功完成，这是可能会跳转到一个网页，我们把它关闭即可</p>
+<p class="step-content-indent" style="margin-left:82.1pt;">窗口自动关闭通常表示安装完成；此时可能跳转到网页，关闭即可</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image080.png" alt="跳转网页"></p>
 
 <h3 class="sec2">3) 设置中文语言</h3>
@@ -365,15 +415,27 @@
 <p class="step-content-indent" style="margin-left:82.1pt;">按刚才的方式打开后，就会发现界面变成了中文</p>
 <p class="step-content-indent" style="margin-left:82.1pt;"><img src="img/wec700anz/image091.png" alt="中文新建虚拟机"><img src="img/wec700anz/image092.png" alt="中文主界面"></p>
 
-<p class="final-text">至此，Windows Embedded Compact 7 开发环境安装 已经全部完成！</p>
-<p class="final-text">感谢观看！</p>
-<p class="sub-final">请继续观看“Windows Embedded Compact 7 镜像制作详细教程”</p>
+<p class="final-text">至此，Windows Embedded Compact 7 开发环境安装完成</p>
+<p class="sub-final">请继续阅读“Windows Embedded Compact 7 镜像制作”</p>
 
-<p class="author">
-    <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
-        <span class="author-light">By SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
-    </a>
-</p>
+    <div class="nav-box">
+        <div class="nav-title">导航</div>
+        <p class="entry"><a href="index.html">教程索引</a><span class="badge">首页</span></p>
+        <p class="entry"><a href="wec7anz.html">Windows Embedded Compact 7 开发环境安装教程</a><span class="badge">环境搭建</span></p>
+        <p class="entry"><a href="wec7peiz.html">Windows Embedded Compact 7 镜像制作教程</a><span class="badge">镜像制作</span></p>
+        <p class="entry"><a href="OSDesignfanyi.html">OSDesign 架构树形图翻译</a><span class="badge">组件参考</span></p>
+        <p class="entry"><a href="ziyuan.html">Windows Embedded Compact 7 全套资源清单</a><span class="badge">资源下载</span></p>
+    </div>
+
+
+
+    <footer class="page-footer">
+        <p class="author">
+            <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
+                <span class="author-light">SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
+            </a>
+        </p>
+    </footer>
 
 </body>
 </html>

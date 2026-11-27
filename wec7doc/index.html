@@ -76,6 +76,57 @@
             border-top: 1px solid #ccc;
             margin: 30pt 0 20pt 0;
         }
+
+        /* ---------- 底部页面导航 ---------- */
+        .nav-box {
+            border: 1pt solid blue;
+            padding: 12pt 18pt;
+            margin-top: 36pt;
+            margin-bottom: 24pt;
+            font-family: 宋体, SimSun, serif;
+        }
+        .nav-title {
+            font-size: 18pt;
+            color: blue;
+            font-weight: bold;
+            margin-bottom: 8pt;
+        }
+        .nav-box .entry {
+            font-size: 14pt;
+            color: black;
+            margin: 0 0 0 36pt;
+            text-indent: -18pt;
+            padding: 3pt 0;
+            line-height: 1.6;
+        }
+        .nav-box .entry a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .nav-box .entry a:hover {
+            color: #0000CC;
+        }
+        .nav-box .entry .badge {
+            color: #666;
+            font-size: 12pt;
+            margin-left: 8pt;
+        }
+
+
+        /* ---------- 页脚 ---------- */
+        .page-footer {
+            margin-top: 36pt;
+            padding: 18pt 24pt;
+            background: linear-gradient(to bottom, #FFFFFF 0%, #E6F2FF 100%);
+            text-align: center;
+        }
+        .page-footer .author {
+            margin: 0;
+            color: rgb(0, 120, 215);
+        }
+        .page-footer .author a {
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -83,29 +134,39 @@
     <h1>Windows Embedded Compact 7<br>教程索引</h1>
 
     <p class="normal-text" style="font-size:14pt; color:#555; margin-bottom:24pt;">
-        本索引汇总了四篇关于 Windows Embedded Compact 7 的中文教程，建议按顺序阅读。
+        本索引汇总了四篇 Windows Embedded Compact 7 相关中文文档（3 篇教程、1 份组件参考），建议按顺序阅读。
         所需资源包可从
         <a href="https://1852672225.share.123pan.cn/123pan/HKDwvd-4aex3" target="_blank" rel="noopener noreferrer" style="color:blue; text-decoration:underline;">123云盘下载</a>，
         完整文件清单、大小与来源说明见
         <a href="ziyuan.html" style="color:blue; text-decoration:underline;">资源清单</a>。
     </p>
 
+    <p class="normal-text" style="font-size:14pt; color:#555; margin-bottom:24pt;">
+        说明：本教程仅介绍如何制作并初步启动镜像，面向初学者，不涉及其他内容。
+    </p>
+
     <h2 class="sec1">· 文档列表</h2>
 
-    <p class="entry"><a href="wec7anz.html">Windows Embedded Compact 7 开发环境安装详细教程</a><span class="badge">环境搭建</span></p>
-    <p class="entry"><a href="wec7peiz.html">Windows Embedded Compact 7 镜像制作详细教程</a><span class="badge">镜像制作</span></p>
+    <p class="entry"><a href="wec7anz.html">Windows Embedded Compact 7 开发环境安装</a><span class="badge">环境搭建</span></p>
+    <p class="entry"><a href="wec7peiz.html">Windows Embedded Compact 7 镜像制作</a><span class="badge">镜像制作</span></p>
     <p class="entry"><a href="OSDesignfanyi.html">OSDesign 架构树形图翻译</a><span class="badge">组件参考</span></p>
     <p class="entry"><a href="ziyuan.html">Windows Embedded Compact 7 全套资源清单</a><span class="badge">资源下载</span></p>
 
     <hr>
 
-    <p style="font-size:14pt; color:#666; text-align:center;">共 3 篇教程 · 1 份资源清单</p>
+    <p style="font-size:14pt; color:#666; text-align:center;">共 3 篇教程 · 1 份组件参考 · 1 份资源清单</p>
 
-    <p class="author">
-        <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
-            <span class="author-light">By SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
-        </a>
-    </p>
+
+
+
+
+    <footer class="page-footer">
+        <p class="author">
+            <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
+                <span class="author-light">SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
+            </a>
+        </p>
+    </footer>
 
 </body>
 </html>

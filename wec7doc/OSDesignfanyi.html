@@ -129,6 +129,57 @@
             font-size: 0.75em;
             color: #999;
         }
+
+        /* ---------- 底部页面导航 ---------- */
+        .nav-box {
+            border: 1pt solid blue;
+            padding: 12pt 18pt;
+            margin-top: 36pt;
+            margin-bottom: 24pt;
+            font-family: 宋体, SimSun, serif;
+        }
+        .nav-title {
+            font-size: 18pt;
+            color: blue;
+            font-weight: bold;
+            margin-bottom: 8pt;
+        }
+        .nav-box .entry {
+            font-size: 14pt;
+            color: black;
+            margin: 0 0 0 36pt;
+            text-indent: -18pt;
+            padding: 3pt 0;
+            line-height: 1.6;
+        }
+        .nav-box .entry a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .nav-box .entry a:hover {
+            color: #0000CC;
+        }
+        .nav-box .entry .badge {
+            color: #666;
+            font-size: 12pt;
+            margin-left: 8pt;
+        }
+
+
+        /* ---------- 页脚 ---------- */
+        .page-footer {
+            margin-top: 36pt;
+            padding: 18pt 24pt;
+            background: linear-gradient(to bottom, #FFFFFF 0%, #E6F2FF 100%);
+            text-align: center;
+        }
+        .page-footer .author {
+            margin: 0;
+            color: rgb(0, 120, 215);
+        }
+        .page-footer .author a {
+            color: inherit;
+        }
     </style>
 
     <!--[if lte IE 7]>
@@ -521,10 +572,10 @@
                                                         <span class="label">TCP/IP</span>
                                                         <ul>
                                                             <li><span class="leaf-text">IP Helper API<span class="trans">（IP 助手 API）</span></span></li>
-                                                            <li><span class="leaf-text">TCP/IP Checksum<span class="trans">（TCP/IP 校验和，原文拼写有误，应为 Checksum）</span></span></li>
+                                                            <li><span class="leaf-text">TCP/IP Checksum<span class="trans">（TCP/IP 校验和；原文如此，疑为 Checksum）</span></span></li>
                                                             <li><span class="leaf-text">TCP/IP Checksum</span></li>
                                                             <li><span class="leaf-text">TCP/IP Checksum</span></li>
-                                                            <li><span class="leaf-text">TCP/IP Procotol<span class="trans">（TCP/IP 协议，原文拼写有误，应为 Protocol）</span></span></li>
+                                                            <li><span class="leaf-text">TCP/IP Procotol<span class="trans">（TCP/IP 协议；原文如此，疑为 Protocol）</span></span></li>
                                                             <li><span class="leaf-text">TCP/IP Procotol</span></li>
                                                         </ul>
                                                     </li>
@@ -656,7 +707,7 @@
                                                     <li>
                                                         <span class="label">Simple Network Time Protocol (SNTP)<span class="trans">（简单网络时间协议）</span></span>
                                                         <ul>
-                                                            <li><span class="leaf-text">Automatic DST Adjustmant Service<span class="trans">（自动夏令时调整服务，原文拼写有误，应为 Adjustment）</span></span></li>
+                                                            <li><span class="leaf-text">Automatic DST Adjustmant Service<span class="trans">（自动夏令时调整服务；原文如此，疑为 Adjustment）</span></span></li>
                                                             <li><span class="leaf-text">SNTP Client Service<span class="trans">（SNTP 客户端服务）</span></span></li>
                                                         </ul>
                                                     </li>
@@ -1389,11 +1440,22 @@
         </ul>
     </div>
 
-    <p class="author">
-        <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
-            <span class="author-light">By SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
-        </a>
-    </p>
+    <div class="nav-box">
+        <div class="nav-title">导航</div>
+        <p class="entry"><a href="index.html">教程索引</a><span class="badge">首页</span></p>
+        <p class="entry"><a href="wec7anz.html">Windows Embedded Compact 7 开发环境安装教程</a><span class="badge">环境搭建</span></p>
+        <p class="entry"><a href="wec7peiz.html">Windows Embedded Compact 7 镜像制作教程</a><span class="badge">镜像制作</span></p>
+        <p class="entry"><a href="OSDesignfanyi.html">OSDesign 架构树形图翻译</a><span class="badge">组件参考</span></p>
+        <p class="entry"><a href="ziyuan.html">Windows Embedded Compact 7 全套资源清单</a><span class="badge">资源下载</span></p>
+    </div>
+
+    <footer class="page-footer">
+        <p class="author">
+            <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
+                <span class="author-light">By SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
+            </a>
+        </p>
+    </footer>
 
 </body>
 </html>

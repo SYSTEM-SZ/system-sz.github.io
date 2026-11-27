@@ -176,6 +176,56 @@
             border-top: 1px solid #ccc;
             margin: 30pt 0 20pt 0;
         }
+
+        /* ---------- 底部页面导航 ---------- */
+        .nav-box {
+            border: 1pt solid blue;
+            padding: 12pt 18pt;
+            margin-top: 36pt;
+            margin-bottom: 24pt;
+            font-family: 宋体, SimSun, serif;
+        }
+        .nav-title {
+            font-size: 18pt;
+            color: blue;
+            font-weight: bold;
+            margin-bottom: 8pt;
+        }
+        .nav-box .entry {
+            font-size: 14pt;
+            color: black;
+            margin: 0 0 0 36pt;
+            text-indent: -18pt;
+            padding: 3pt 0;
+            line-height: 1.6;
+        }
+        .nav-box .entry a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .nav-box .entry a:hover {
+            color: #0000CC;
+        }
+        .nav-box .entry .badge {
+            color: #666;
+            font-size: 12pt;
+            margin-left: 8pt;
+        }
+
+        /* ---------- 页脚 ---------- */
+        .page-footer {
+            margin-top: 36pt;
+            padding: 18pt 24pt;
+            background: linear-gradient(to bottom, #FFFFFF 0%, #E6F2FF 100%);
+            text-align: center;
+        }
+        .page-footer .author {
+            margin: 0;
+            color: rgb(0, 120, 215);
+        }
+        .page-footer .author a {
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -183,8 +233,8 @@
     <h1>Windows Embedded Compact 7<br>资源清单</h1>
 
     <p class="normal-text" style="font-size:14pt; color:#555; margin-bottom:24pt;">
-        本页汇总了「软件：WEC7全套开发环境（2026.8）」目录下的全部文件，
-        列出文件名、大小、用途与来源，方便按需下载并核对完整性。
+        本页汇总了「软件：WEC7全套开发环境（2026.8）」目录下的主要文件，
+        列出文件名、大小、用途与来源，便于按需下载并核对完整性。
         安装步骤请返回<a href="index.html" style="color:blue; text-decoration:underline;">教程索引</a>按顺序阅读。
     </p>
 
@@ -209,7 +259,7 @@
     <div class="share-tip">
         <p class="share-title">欢迎分享分流下载渠道</p>
         <p>如果您手上有可用的分流下载地址（例如其他网盘、镜像站、离线存档等），欢迎联系作者或在评论区分享，帮助更多需要的人顺利获取资源。</p>
-        <p class="warn">温馨提示：分流下载时请注意校验文件；如需提供下载分流，请确保文件完整（不接受重复网盘分流）。</p>
+        <p class="warn">温馨提示：分流下载时请注意校验文件；如需提供下载分流，请确保文件完整。</p>
     </div>
 
     <!-- ================= 清单表格 ================= -->
@@ -252,7 +302,7 @@
             <td class="path">注册激活工具\（含 UpgradeVs2008.exe、PatchVS2008.exe、CrackVS2008ForWindows7.exe）</td>
             <td>--</td>
             <td>写入序列号并激活 VS2008</td>
-            <td class="src">网络收集 · <a href="https://www.jb51.net/softs/152988.html" target="_blank" rel="noopener noreferrer">jb51.net</a> / <a href="https://www.downxia.com/downinfo/272380.html" target="_blank" rel="noopener noreferrer">downxia.com</a> / <a href="https://www.cnblogs.com/cang12138/p/5979613.html" target="_blank" rel="noopener noreferrer">cnblogs.com</a><br><span class="note">注：UpgradeVs2008.exe 可能已失传，其他工具操作方法类似。</span></td>
+            <td class="src">网络收集 · <a href="https://www.jb51.net/softs/152988.html" target="_blank" rel="noopener noreferrer">jb51.net</a> / <a href="https://www.downxia.com/downinfo/272380.html" target="_blank" rel="noopener noreferrer">downxia.com</a> / <a href="https://www.cnblogs.com/cang12138/p/5979613.html" target="_blank" rel="noopener noreferrer">cnblogs.com</a><br><span class="note">注：UpgradeVs2008.exe 来源较少，若缺失可参考其他激活工具的操作方式。</span></td>
         </tr>
 
         <!-- ---------- 二、WEC7 ---------- -->
@@ -290,7 +340,7 @@
             <td class="path">Virtual PC 2007 SP1 32位.exe</td>
             <td>31.7 MB</td>
             <td>32 位 Windows 使用的虚拟机程序</td>
-            <td class="src">微软官方（已停止支持）<br>原链接 <a href="https://www.itmop.com/downinfo/2243.html" target="_blank" rel="noopener noreferrer">itmop.com</a><span class="note">（似乎失效）</span><br>替代首选 <a href="https://www.jb51.net/softs/22661.html" target="_blank" rel="noopener noreferrer">jb51.net</a><br><a href="https://archive.org/details/vpc_2007_sp1" target="_blank" rel="noopener noreferrer">archive.org</a> / <a href="https://winworldpc.com/product/virtual-pc/2007" target="_blank" rel="noopener noreferrer">winworldpc.com</a> / <a href="https://legacyupdate.net/download-center/download/24439/microsoft-virtual-pc-2007-sp1" target="_blank" rel="noopener noreferrer">legacyupdate.net</a></td>
+            <td class="src">微软官方（已停止支持）<br>原链接 <a href="https://www.itmop.com/downinfo/2243.html" target="_blank" rel="noopener noreferrer">itmop.com</a><span class="note">（可能已失效）</span><br>替代首选 <a href="https://www.jb51.net/softs/22661.html" target="_blank" rel="noopener noreferrer">jb51.net</a><br><a href="https://archive.org/details/vpc_2007_sp1" target="_blank" rel="noopener noreferrer">archive.org</a> / <a href="https://winworldpc.com/product/virtual-pc/2007" target="_blank" rel="noopener noreferrer">winworldpc.com</a> / <a href="https://legacyupdate.net/download-center/download/24439/microsoft-virtual-pc-2007-sp1" target="_blank" rel="noopener noreferrer">legacyupdate.net</a></td>
         </tr>
         <tr>
             <td>Virtual PC 2007 SP1（64 位）</td>
@@ -369,11 +419,25 @@
 
     <p style="font-size:14pt; color:#666; text-align:center;">共 24 个文件 · 14.01 GB</p>
 
-    <p class="author">
-        <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
-            <span class="author-light">By SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
-        </a>
-    </p>
+
+    <div class="nav-box">
+        <div class="nav-title">导航</div>
+        <p class="entry"><a href="index.html">教程索引</a><span class="badge">首页</span></p>
+        <p class="entry"><a href="wec7anz.html">Windows Embedded Compact 7 开发环境安装教程</a><span class="badge">环境搭建</span></p>
+        <p class="entry"><a href="wec7peiz.html">Windows Embedded Compact 7 镜像制作教程</a><span class="badge">镜像制作</span></p>
+        <p class="entry"><a href="OSDesignfanyi.html">OSDesign 架构树形图翻译</a><span class="badge">组件参考</span></p>
+        <p class="entry"><a href="ziyuan.html">Windows Embedded Compact 7 全套资源清单</a><span class="badge">资源下载</span></p>
+    </div>
+
+
+
+    <footer class="page-footer">
+        <p class="author">
+            <a href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener noreferrer">
+                <span class="author-light">SYSTEM-</span><b>SZ</b><b> · </b><span class="author-light">bilibili</span>
+            </a>
+        </p>
+    </footer>
 
 </body>
 </html>
