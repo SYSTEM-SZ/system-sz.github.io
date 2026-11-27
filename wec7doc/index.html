@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Embedded Compact 7 教程索引</title>
     <style>
         body {
@@ -127,6 +128,22 @@
         .page-footer .author a {
             color: inherit;
         }
+
+        /* ---------- 移动端适配 ---------- */
+        @media screen and (max-width: 768px) {
+            body { margin: 12pt 10pt; }
+            h1 { font-size: 22pt; margin-bottom: 12pt; }
+            .sec1 { font-size: 16pt; margin-left: 0; text-indent: 0; }
+            .entry { font-size: 12pt; margin-left: 18pt; text-indent: -18pt; }
+            .entry .badge { font-size: 12pt; }
+            .author { font-size: 16pt; }
+            .nav-box { padding: 8pt 10pt; }
+            .nav-title { font-size: 14pt; }
+            .nav-box .entry { margin-left: 18pt; text-indent: -18pt; font-size: 12pt; }
+            .page-footer { padding: 24pt 12pt; }
+            img { max-width: 100%; height: auto; }
+        }
+
     </style>
 </head>
 <body>

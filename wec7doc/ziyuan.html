@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Embedded Compact 7 资源清单</title>
     <style>
         body {
@@ -226,6 +227,30 @@
         .page-footer .author a {
             color: inherit;
         }
+
+        /* ---------- 移动端适配 ---------- */
+        @media screen and (max-width: 768px) {
+            body { margin: 12pt 10pt; }
+            h1 { font-size: 22pt; }
+            .sec1 { font-size: 18pt; margin-left: 0; text-indent: 0; }
+            .normal-text { font-size: 12pt; }
+            .dl-box { padding: 8pt 10pt; }
+            .dl-main { font-size: 13pt; }
+            .dl-alt { font-size: 12pt; }
+            .dl-sub { font-size: 10pt; margin-left: 8pt; }
+            .share-tip { padding: 8pt 10pt; }
+            .share-tip .share-title { font-size: 14pt; }
+            .share-tip p { font-size: 12pt; }
+            .res-table { display: block; overflow-x: auto; }
+            .res-table th, .res-table td { font-size: 10pt; padding: 4pt 5pt; }
+            .res-table .path, .res-table .src { font-size: 9pt; }
+            .author { font-size: 16pt; }
+            .nav-box { padding: 8pt 10pt; }
+            .nav-title { font-size: 14pt; }
+            .nav-box .entry { margin-left: 18pt; text-indent: -18pt; font-size: 12pt; }
+            .page-footer { padding: 24pt 12pt; }
+        }
+
     </style>
 </head>
 <body>

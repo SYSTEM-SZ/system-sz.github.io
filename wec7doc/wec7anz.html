@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Embedded Compact 7 开发环境安装</title>
     <style>
         body {
@@ -189,6 +190,33 @@
         .page-footer .author a {
             color: inherit;
         }
+
+        /* ---------- 移动端适配 ---------- */
+        @media screen and (max-width: 768px) {
+            body { margin: 12pt 10pt; }
+            h1 { font-size: 22pt; }
+            .sec1 { font-size: 18pt; margin-left: 0; text-indent: 0; }
+            .sec2 { font-size: 15pt; margin-left: 0; text-indent: 0; }
+            .index-table td { padding: 6pt 8pt; }
+            .index-title { font-size: 16pt; }
+            .index-item { font-size: 11pt; margin-left: 12pt; text-indent: -12pt; }
+            .index-sub { font-size: 10pt; margin-left: 24pt; text-indent: -12pt; }
+            .step-title, .step-content, .step-content-indent, .normal-text {
+                margin-left: 0 !important;
+                text-indent: 0 !important;
+                font-size: 12pt;
+                padding-left: 8pt;
+            }
+            .final-text { font-size: 16pt; }
+            .sub-final { font-size: 13pt; }
+            .author { font-size: 16pt; }
+            .nav-box { padding: 8pt 10pt; }
+            .nav-title { font-size: 14pt; }
+            .nav-box .entry { margin-left: 18pt; text-indent: -18pt; font-size: 12pt; }
+            .page-footer { padding: 24pt 12pt; }
+            img { max-width: 100%; height: auto; }
+        }
+
     </style>
 </head>
 <body>

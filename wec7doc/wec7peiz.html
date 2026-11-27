@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Embedded Compact 7 镜像制作</title>
     <style>
         body {
@@ -241,6 +242,58 @@
         .page-footer .author a {
             color: inherit;
         }
+
+        /* ---------- 移动端适配 ---------- */
+        @media screen and (max-width: 768px) {
+            body { margin: 12pt 10pt; }
+            h1 { font-size: 22pt; }
+            .sec1 { font-size: 18pt; margin-left: 0; text-indent: 0; }
+            .sec2, .sec2-sub { font-size: 15pt; margin-left: 0; text-indent: 0; }
+            .index-table td { padding: 6pt 8pt; }
+            .index-title { font-size: 16pt; }
+            .index-item { font-size: 11pt; margin-left: 12pt; text-indent: -12pt; }
+            .index-sub { font-size: 10pt; margin-left: 24pt; text-indent: -12pt; }
+            .step-title, .step-content, .step-content-indent, .normal-text {
+                margin-left: 0 !important;
+                text-indent: 0 !important;
+                font-size: 12pt;
+                padding-left: 8pt;
+            }
+            .note-box { margin-left: 0; }
+            .theme-table { display: block; overflow-x: auto; margin-left: 0; }
+            .theme-table td { font-size: 10pt; }
+            .final-text { font-size: 16pt; }
+            .sub-final { font-size: 13pt; }
+            .author { font-size: 16pt; }
+            .nav-box { padding: 8pt 10pt; }
+            .nav-title { font-size: 14pt; }
+            .nav-box .entry { margin-left: 18pt; text-indent: -18pt; font-size: 12pt; }
+            .page-footer { padding: 24pt 12pt; }
+            img { max-width: 100% !important; height: auto !important; }
+
+            /* 并行分支表格：手机端横向滚动，保持两列对齐 */
+            .branch-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-left: 0 !important;
+                max-width: 100%;
+            }
+            .branch-table td {
+                padding: 0 8pt 12pt 0 !important;
+            }
+            .branch-table td > p {
+                margin-left: 8pt !important;
+                text-indent: 0 !important;
+                font-size: 12pt;
+            }
+            .branch-table td img {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+        }
+
     </style>
 </head>
 <body>
@@ -1023,7 +1076,7 @@
 <p class="step-content" style="margin-left:71.6pt;"><img border="0" width="627" height="642" src="img/wec7peiz/image200.png" alt="Generic CEPC BSP" class="img-block"></p>
 
 <!-- 两个分支并行说明 -->
-<table border="0" cellspacing="0" cellpadding="0" style="margin-left:71.6pt; border-collapse:collapse;">
+<table class="branch-table" border="0" cellspacing="0" cellpadding="0" style="margin-left:71.6pt; border-collapse:collapse;">
     <tr>
         <td valign="top" style="width:594.25pt; padding:0cm 5.4pt;">
             <p style="margin-left:22pt; text-indent:-22pt;"><span style="font-family:Wingdings; color:blue;">l </span><span style="color:blue;">选择“Handheld”模板的步骤</span></p>
@@ -1069,7 +1122,7 @@
 <p class="step-content-indent" style="margin-left:93.6pt;"><img border="0" width="449" height="574" src="img/wec7peiz/image206.png" alt="国际化精简" class="img-block"></p>
 
 <!-- 两个模板的进一步定制 -->
-<table border="0" cellspacing="0" cellpadding="0" style="margin-left:71.6pt; border-collapse:collapse;">
+<table class="branch-table" border="0" cellspacing="0" cellpadding="0" style="margin-left:71.6pt; border-collapse:collapse;">
     <tr>
         <td valign="top" style="width:594.25pt; padding:0cm 5.4pt;">
             <p style="margin-left:22pt; text-indent:-22pt;"><span style="font-family:Wingdings; color:blue;">l </span><span style="color:blue;">选择“Handheld”模板的步骤</span></p>
