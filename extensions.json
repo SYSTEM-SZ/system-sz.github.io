@@ -1,9 +1,8 @@
 [
   {
     "id": "system-info",
-    "name": "系统信息",
+    "title": "系统信息",
     "description": "SYSTEM-SZ 站点信息与说明",
-    "icon": "◈",
-    "src": "extensions/system-info.html"
+    "url": "extensions/system-info.html"
   }
 ]
