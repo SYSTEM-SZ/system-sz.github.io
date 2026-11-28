@@ -1402,6 +1402,10 @@ async function loadRegistry() {
   /* 加载外部 HTML */
 
   async function openExtension(item) {
+
+
+
+    
     var currentRequest = ++requestNumber;
 
     content.replaceChildren();
@@ -1478,10 +1482,18 @@ async function loadRegistry() {
       );
 
       frame.setAttribute('loading', 'eager');
-      frame.srcdoc = srcdoc;
 
-      loading.remove();
+      // 保留加载提示，直到 iframe 内的文档真正触发 load。
+      // Edge 即使命中 HTML 缓存，也会在每次新建 iframe 时重新解析 srcdoc。
+      frame.addEventListener('load', function () {
+        if (loading.parentNode) {
+          loading.remove();
+        }
+      }, { once: true });
+
+      // 先把 iframe 放入页面，再赋值 srcdoc，避免加载提示提前消失。
       view.appendChild(frame);
+      frame.srcdoc = srcdoc;
 
     } catch (error) {
       console.error('[SYSTEM-SZ Extension]', error);
