@@ -909,10 +909,10 @@ main {
     <button
       class="btn extension-trigger"
       type="button"
-      aria-label="打开扩展窗口"
+      aria-label="打开 SYSTEM-SZ 的空间"
       aria-haspopup="dialog"
       aria-controls="extension-modal"
-      title="Extensions"
+      title="SYSTEM-SZ 的空间"
     >
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -946,12 +946,12 @@ main {
   >
     <header class="glass-header">
       <div>
-        <div class="glass-eyebrow">SYSTEM-SZ · EXTENSIONS</div>
+        <div class="glass-eyebrow">SYSTEM-SZ · SPACE</div>
 
-        <h2 class="glass-title" id="glass-title">扩展空间</h2>
+        <h2 class="glass-title" id="glass-title">SYSTEM-SZ 的空间</h2>
 
         <p class="glass-description" id="glass-description">
-          独立扩展与功能空间。
+          探索 SYSTEM-SZ 提供的内容与功能。
         </p>
       </div>
 
@@ -980,7 +980,7 @@ main {
     </div>
 
     <footer class="glass-footer">
-      A QUIET SPACE FOR WHAT'S NEXT
+      EXPLORE MORE FROM SYSTEM-SZ
     </footer>
   </section>
 </div>
@@ -1198,6 +1198,17 @@ main {
   var closeTimer = null;
 
   var extensions = [];
+
+  // 注册表缓存
+  var registryLoaded = false;
+  var registryPromise = null;
+
+  // 页面内容缓存
+  var extensionCache = new Map();
+
+  // 主题 CSS 缓存
+  var themeCSSPromise = null;
+
   var fadeDuration = window.matchMedia(
     '(prefers-reduced-motion:reduce)'
   ).matches ? 0 : 340;
@@ -1234,22 +1245,27 @@ main {
 
   /* 读取注册表 */
 
-  async function loadRegistry() {
-    showStatus('正在读取扩展注册表', 'LOADING EXTENSIONS');
+async function loadRegistry() {
+  // 已成功读取过，不再请求
+  if (registryLoaded) return;
+
+  // 正在读取时，复用同一个请求
+  if (registryPromise) return registryPromise;
+
+  registryPromise = (async function () {
+    showStatus('正在整理可用内容', 'PLEASE WAIT');
 
     try {
-      var response = await fetch(registryURL.href, {
-        cache: 'no-cache'
-      });
+      var response = await fetch(registryURL.href);
 
       if (!response.ok) {
-        throw new Error('注册表请求失败：HTTP ' + response.status);
+        throw new Error('内容读取失败：HTTP ' + response.status);
       }
 
       var data = await response.json();
 
       if (!Array.isArray(data)) {
-        throw new Error('extensions.json 必须是 JSON 数组');
+        throw new Error('内容列表格式不正确');
       }
 
       var seen = new Set();
@@ -1268,17 +1284,24 @@ main {
         return true;
       });
 
+      registryLoaded = true;
       renderExtensionList();
 
     } catch (error) {
-      console.error('[SYSTEM-SZ Extensions]', error);
+      console.error('[SYSTEM-SZ]', error);
 
       showStatus(
-        '无法读取扩展注册表',
-        error.message || '请检查文件路径和静态托管配置。'
+        '暂时无法显示内容',
+        '请稍后重试，或联系站点维护者。'
       );
+
+      // 失败时允许下次重新请求
+      registryPromise = null;
     }
-  }
+  })();
+
+  return registryPromise;
+}
 
   /* 渲染扩展列表 */
 
@@ -1287,8 +1310,8 @@ main {
 
     if (!extensions.length) {
       showStatus(
-        '目前没有已注册的扩展',
-        '将外部 HTML 登记到 extensions.json 后，扩展会显示在这里。'
+        '暂时没有可展示的内容',
+        '新的内容与功能将在这里呈现，欢迎稍后再来看看。'  
       );
       return;
     }
@@ -1334,15 +1357,22 @@ main {
   /* 为外部 HTML 注入统一主题 */
 
   async function prepareHTML(html, extensionURL) {
-    var themeResponse = await fetch(themeURL.href, {
-      cache: 'no-cache'
-    });
+    if (!themeCSSPromise) {
+      themeCSSPromise = fetch(themeURL.href)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('统一主题 CSS 加载失败');
+          }
 
-    if (!themeResponse.ok) {
-      throw new Error('统一主题 CSS 加载失败');
+          return response.text();
+        })
+        .catch(function (error) {
+          themeCSSPromise = null;
+          throw error;
+        });
     }
 
-    var themeCSS = await themeResponse.text();
+    var themeCSS = await themeCSSPromise;
 
     var parser = new DOMParser();
     var doc = parser.parseFromString(html, 'text/html');
@@ -1385,7 +1415,7 @@ main {
     var back = document.createElement('button');
     back.type = 'button';
     back.className = 'extension-back';
-    back.textContent = '← 返回扩展列表';
+    back.textContent = '← 返回内容列表';
 
     back.addEventListener('click', function () {
       requestNumber++;
@@ -1414,16 +1444,23 @@ main {
         throw new Error('扩展地址只允许 HTTP 或 HTTPS');
       }
 
-      var response = await fetch(extensionURL.href, {
-        cache: 'no-cache'
-      });
+      // 优先使用已经处理过的页面
+      var srcdoc = extensionCache.get(item.id);
 
-      if (!response.ok) {
-        throw new Error('扩展 HTML 请求失败：HTTP ' + response.status);
+      if (!srcdoc) {
+        var response = await fetch(extensionURL.href);
+
+        if (!response.ok) {
+          throw new Error('页面读取失败：HTTP ' + response.status);
+        }
+
+        var html = await response.text();
+
+        srcdoc = await prepareHTML(html, extensionURL.href);
+
+        // 保存处理后的页面
+        extensionCache.set(item.id, srcdoc);
       }
-
-      var html = await response.text();
-      var srcdoc = await prepareHTML(html, extensionURL.href);
 
       if (
         currentRequest !== requestNumber ||
@@ -1493,7 +1530,9 @@ main {
 
     closeButton.focus();
 
-    loadRegistry();
+    if (!registryLoaded) {
+      loadRegistry();
+    }
   }
 
   /* 关闭弹窗 */
@@ -1501,7 +1540,7 @@ main {
   function closeModal() {
     if (modal.hidden || closeTimer) return;
 
-    requestNumber++;
+
 
     modal.classList.remove('is-open');
 
