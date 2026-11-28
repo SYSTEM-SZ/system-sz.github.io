@@ -1,0 +1,122 @@
+
+:root {
+  color-scheme: light;
+
+  --blue: rgb(0, 120, 215);
+  --ink: #0B2B45;
+
+  --extension-text: rgba(11, 43, 69, .82);
+  --extension-muted: rgba(11, 43, 69, .52);
+
+  --extension-glass: rgba(255, 255, 255, .48);
+  --extension-border: rgba(255, 255, 255, .68);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: transparent;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 4px;
+
+  font-family:
+    "Helvetica Neue",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    system-ui,
+    -apple-system,
+    sans-serif;
+
+  color: var(--extension-text);
+  background: transparent;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+
+p {
+  line-height: 1.8;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  color: var(--ink);
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+  padding: 9px 12px;
+
+  color: var(--ink);
+
+  border: 1px solid rgba(11,43,69,.14);
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.58);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(0,120,215,.5);
+  box-shadow: 0 0 0 3px rgba(0,120,215,.08);
+}
+
+button,
+.extension-card {
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.extension-card {
+  padding: 15px;
+
+  border: 1px solid var(--extension-border);
+  border-radius: 15px;
+
+  background: var(--extension-glass);
+}
+
+.muted {
+  color: var(--extension-muted);
+}
+
+::selection {
+  color: #fff;
+  background: rgba(0,120,215,.55);
+}
