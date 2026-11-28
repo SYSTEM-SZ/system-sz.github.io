@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SYSTEM-SZ</title>
+<style>
+  :root{
+    --blue: rgb(0, 120, 215);
+    --ink: #0B2B45;
+  }
+
+  *{ margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body{ height: 100%; }
+
+  body{
+    font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB",
+                "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 100% 0%, #FFFFFF 0%, #FFFFFF 28%, #D6E6FF 62%, #91BAFF 100%);
+    background-color: #91BAFF;
+    color: var(--ink);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ---------- 背景大字：欢迎 ---------- */
+  .bg-word{
+    position: fixed;
+    left: -0.12em;
+    bottom: -0.18em;
+    z-index: 0;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: min(32vw, 40vh);
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.34);
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: breathe 18s ease-in-out infinite;
+  }
+
+  @keyframes breathe{
+    0%, 100%{ opacity: 1; }
+    50%      { opacity: 0.6; }
+  }
+
+  /* ---------- 主体：整屏居中，只承载标题 ---------- */
+  main{
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    text-align: center;
+  }
+
+  /* ---------- 标题 + 倒影 ---------- */
+  .wordmark{
+    position: relative;
+    display: inline-block;
+    font-size: max(56px, 13.5vw);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    color: rgb(0, 120, 215);
+    margin: 0;
+  }
+
+  .wordmark .line{
+    display: block;
+    color: var(--blue);
+    --glare: radial-gradient(
+      circle at 128% -110%,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.82) 30%,
+      rgba(255, 255, 255, 0.44) 55%,
+      rgba(255, 255, 255, 0.15) 78%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)){
+    .wordmark .line{
+      background-image:
+        var(--glare),
+        linear-gradient(rgb(0, 120, 215), rgb(0, 120, 215));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  }
+
+  .wordmark .reflection{
+    position: absolute;
+    left: 0;
+    top: calc(100% - 0.08em);
+    width: 100%;
+    display: block;
+    color: inherit;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    transform: scaleY(-1);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.03) 30%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.03) 30%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
+  }
+
+  .light{ font-weight: 300; }
+  .bold { font-weight: 800; }
+
+  /* ---------- 底部信息区：撑满宽度 + flex 居中，避免 transform 半像素 ---------- */
+  .bottom{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: clamp(24px, 6vh, 64px);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2.2vh, 22px);
+    text-align: center;
+    pointer-events: none; /* 不挡底部点击，按钮单独恢复 */
+  }
+
+  .tagline{
+    font-size: clamp(13px, 1.3vw, 15px);
+    letter-spacing: 0.18em;
+    color: rgba(11, 43, 69, 0.55);
+    font-style: italic;
+  }
+
+  .actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    pointer-events: auto;
+  }
+
+  /* ---------- 圆形图标按钮 ---------- */
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(11, 43, 69, 0.16);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--ink);
+    text-decoration: none;
+    pointer-events: auto;
+    transition: color .25s ease, border-color .25s ease, background .25s ease,
+                transform .25s ease, box-shadow .25s ease;
+  }
+
+  .btn svg{
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    display: block;
+    /* 提升曲线精度，缩放时边缘更锐利 */
+    shape-rendering: geometricPrecision;
+  }
+
+  .btn:hover, .btn:focus-visible{
+    color: var(--blue);
+    border-color: rgba(0, 120, 215, 0.5);
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 120, 215, 0.14);
+    outline: none;
+  }
+
+  .btn:active{ transform: translateY(0); }
+
+  @media (max-width: 480px){
+    .btn{ width: 48px; height: 48px; }
+    .btn svg{ width: 22px; height: 22px; }
+    .wordmark{ letter-spacing: -0.03em; }
+    .bg-word{ font-size: min(30vw, 36vh); left: -0.14em; bottom: -0.2em; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bg-word{ animation: none; }
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-word" aria-hidden="true">欢迎</div>
+
+  <main>
+    <h1 class="wordmark">
+      <span class="line">
+        <span class="light">SYSTEM-</span><span class="bold">SZ</span>
+      </span>
+      <span class="reflection" aria-hidden="true">
+        <span class="light">SYSTEM-</span><span class="bold">SZ</span>
+      </span>
+    </h1>
+  </main>
+
+  <div class="bottom">
+    <p class="tagline">热爱 system 的 SYSTEM-SZ</p>
+
+    <nav class="actions" aria-label="站点导航">
+      <a class="btn" href="https://github.com/SYSTEM-SZ" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"/>
+        </svg>
+      </a>
+
+      <a class="btn" href="https://space.bilibili.com/3546662595201297" target="_blank" rel="noopener" aria-label="bilibili" title="bilibili">
+        <svg viewBox="0 0 18 18" aria-hidden="true">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.73252 2.67094C3.33229 2.28484 3.33229 1.64373 3.73252 1.25764C4.11291 0.890684 4.71552 0.890684 5.09591 1.25764L7.21723 3.30403C7.27749 3.36218 7.32869 3.4261 7.37081 3.49407H10.5789C10.6211 3.4261 10.6723 3.36218 10.7325 3.30403L12.8538 1.25764C13.2342 0.890684 13.8368 0.890684 14.2172 1.25764C14.6175 1.64373 14.6175 2.28484 14.2172 2.67094L13.364 3.49407H14C16.2091 3.49407 18 5.28493 18 7.49407V12.9996C18 15.2087 16.2091 16.9996 14 16.9996H4C1.79086 16.9996 0 15.2087 0 12.9996V7.49406C0 5.28492 1.79086 3.49407 4 3.49407H4.58579L3.73252 2.67094ZM4 5.42343C2.89543 5.42343 2 6.31886 2 7.42343V13.0702C2 14.1748 2.89543 15.0702 4 15.0702H14C15.1046 15.0702 16 14.1748 16 13.0702V7.42343C16 6.31886 15.1046 5.42343 14 5.42343H4ZM5 9.31747C5 8.76519 5.44772 8.31747 6 8.31747C6.55228 8.31747 7 8.76519 7 9.31747V10.2115C7 10.7638 6.55228 11.2115 6 11.2115C5.44772 11.2115 5 10.7638 5 10.2115V9.31747ZM12 8.31747C11.4477 8.31747 11 8.76519 11 9.31747V10.2115C11 10.7638 11.4477 11.2115 12 11.2115C12.5523 11.2115 13 10.7638 13 10.2115V9.31747C13 8.76519 12.5523 8.31747 12 8.31747Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+
+  <script>
+  (function () {
+    var line = document.querySelector('.wordmark .line');
+    if (!line) return;
+
+    function lightX() { return window.innerWidth; }
+    function lightY() { return 0; }
+
+    function updateGlare() {
+      var rect = line.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      var cx = lightX() - rect.left;
+      var cy = lightY() - rect.top;
+
+      var dx = cx - rect.width / 2;
+      var dy = cy - rect.height / 2;
+      var dist = Math.hypot(dx, dy) || 1;
+
+      var radius = Math.max(dist * 1.35, rect.height * 1.75);
+
+      line.style.setProperty(
+        '--glare',
+        'radial-gradient(circle ' + radius.toFixed(1) + 'px at ' +
+        cx.toFixed(1) + 'px ' + cy.toFixed(1) + 'px,' +
+        ' rgba(255, 255, 255, 0.98) 0%,' +
+        ' rgba(255, 255, 255, 0.82) 30%,' +
+        ' rgba(255, 255, 255, 0.44) 55%,' +
+        ' rgba(255, 255, 255, 0.15) 78%,' +
+        ' rgba(255, 255, 255, 0) 100%)'
+      );
+    }
+
+    updateGlare();
+
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(updateGlare);
+      ro.observe(line);
+      ro.observe(document.documentElement);
+    }
+    window.addEventListener('resize', updateGlare, { passive: true });
+    window.addEventListener('scroll', updateGlare, { passive: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateGlare);
+    }
+  })();
+  </script>
+
+</body>
+</html>
