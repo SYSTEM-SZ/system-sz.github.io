@@ -703,70 +703,6 @@ main {
   min-height: 220px;
 }
 
-/* iframe 尚未完成首屏加载时，由此容器和加载层完整覆盖，避免露出空白 */
-.extension-frame-shell {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  min-height: 340px;
-  height: 42vh;
-  overflow: hidden;
-  border-radius: 13px;
-  background: rgba(255,255,255,.82);
-}
-
-.extension-frame-shell .extension-frame {
-  width: 100%;
-  height: 100%;
-  min-height: 340px;
-  visibility: hidden;
-  background: transparent;
-}
-
-.extension-frame-shell.is-ready .extension-frame {
-  visibility: visible;
-}
-
-.extension-frame-loading {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  box-sizing: border-box;
-  text-align: center;
-  color: rgba(11,43,69,.68);
-  background: rgba(255,255,255,.96);
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.extension-frame-loading::before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  border: 3px solid rgba(0,120,215,.16);
-  border-top-color: var(--blue, #0878d1);
-  border-radius: 50%;
-  animation: extension-loading-spin .8s linear infinite;
-}
-
-@keyframes extension-loading-spin {
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .extension-frame-loading::before {
-    animation: none;
-    border-top-color: rgba(0,120,215,.55);
-  }
-}
-
 .extension-toolbar {
   display: flex;
   align-items: center;
@@ -1535,18 +1471,8 @@ async function loadRegistry() {
         !content.contains(view)
       ) return;
 
-      // 使用独立外壳承载 iframe。iframe 在 load 前保持隐藏，
-      // 加载提示覆盖整个内容区域，因此不会把未渲染完成的空白页露给用户。
-      var frameShell = document.createElement('div');
-      frameShell.className = 'extension-frame-shell';
-
-      var frameLoading = document.createElement('div');
-      frameLoading.className = 'extension-frame-loading';
-      frameLoading.setAttribute('role', 'status');
-      frameLoading.setAttribute('aria-live', 'polite');
-      frameLoading.textContent = '正在加载子界面，请稍候…';
-
       var frame = document.createElement('iframe');
+
       frame.className = 'extension-frame';
       frame.title = item.title;
 
@@ -1554,43 +1480,12 @@ async function loadRegistry() {
         'sandbox',
         'allow-scripts allow-forms allow-downloads'
       );
+
       frame.setAttribute('loading', 'eager');
-
-      // 必须先注册事件、挂载外壳，再设置 srcdoc，避免错过 load 事件。
-      frame.addEventListener('load', function () {
-        if (
-          currentRequest !== requestNumber ||
-          !content.contains(frameShell)
-        ) return;
-
-        // 等待浏览器完成后续绘制，再切换显示，避免 load 与首帧绘制之间闪白。
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            if (
-              currentRequest !== requestNumber ||
-              !content.contains(frameShell)
-            ) return;
-
-            frameShell.classList.add('is-ready');
-            frameLoading.remove();
-          });
-        });
-      }, { once: true });
-
-      frame.addEventListener('error', function () {
-        if (
-          currentRequest !== requestNumber ||
-          !content.contains(frameShell)
-        ) return;
-
-        frameLoading.textContent = '子界面加载失败，请返回后重试';
-        frameLoading.classList.add('is-error');
-      }, { once: true });
-
-      frameShell.append(frame, frameLoading);
-      loading.remove();
-      view.appendChild(frameShell);
       frame.srcdoc = srcdoc;
+
+      loading.remove();
+      view.appendChild(frame);
 
     } catch (error) {
       console.error('[SYSTEM-SZ Extension]', error);
